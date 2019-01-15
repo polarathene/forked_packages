@@ -91,6 +91,7 @@ const generalArgs = {
   duotone: false,
   pathPrefix: ``,
   toFormat: ``,
+  toFormatBase64: ``,
   sizeByPixelDensity: false,
 }
 
@@ -99,6 +100,7 @@ const healOptions = (args, defaultArgs) => {
   options.quality = parseInt(options.quality, 10)
   options.pngCompressionLevel = parseInt(options.pngCompressionLevel, 10)
   options.toFormat = options.toFormat.toLowerCase()
+  options.toFormatBase64 = options.toFormatBase64.toLowerCase()
 
   // only set width to 400 if neither width nor height is passed
   if (options.width === undefined && options.height === undefined) {
@@ -483,8 +485,10 @@ async function generateBase64({ file, args, reporter }) {
     return null
   }
 
-  if (pluginOptions.forceBase64Format) {
-    args.toFormat = pluginOptions.forceBase64Format
+  const forceBase64Format =
+    args.toFormatBase64 || pluginOptions.forceBase64Format
+  if (forceBase64Format) {
+    args.toFormat = forceBase64Format
   }
 
   pipeline
@@ -687,6 +691,7 @@ async function fluid({ file, args = {}, reporter, cache }) {
     grayscale: options.grayscale,
     rotate: options.rotate,
     toFormat: options.toFormat,
+    toFormatBase64: options.toFormat,
     width: base64Width,
     height: base64Height,
   }
@@ -801,6 +806,7 @@ async function fixed({ file, args = {}, reporter, cache }) {
     grayscale: options.grayscale,
     rotate: options.rotate,
     toFormat: options.toFormat,
+    toFormatBase64: options.toFormatBase64,
   }
 
   // Get base64 version
