@@ -212,7 +212,6 @@ class Image extends React.Component {
   }
 
   render() {
-    this.props.fluid && console.log(this.props.fluid)
     const {
       title,
       alt,
