@@ -691,7 +691,7 @@ async function fluid({ file, args = {}, reporter, cache }) {
     grayscale: options.grayscale,
     rotate: options.rotate,
     toFormat: options.toFormat,
-    toFormatBase64: options.toFormat,
+    toFormatBase64: options.toFormatBase64,
     width: base64Width,
     height: base64Height,
   }
